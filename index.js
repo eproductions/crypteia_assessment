@@ -39,5 +39,10 @@ exports.createGreeting = (greetFunc, greet) => {
   return (name) => { return greetFunc(greet, name) }
 };
 
-exports.setDefaults = () => {};
+exports.setDefaults = (defaultProps) => {
+  return (object) => {
+    return Object.assign({}, defaultProps, object);
+  }
+};
+
 exports.fetchUserByNameAndUsersCompany = () => {};
