@@ -35,6 +35,9 @@ exports.applyStatusColor = (colors, statuses) => {
   }).filter(item => item !== undefined);
 };
 
-exports.createGreeting = () => {};
+exports.createGreeting = (greetFunc, greet) => {
+  return (name) => { return greetFunc(greet, name) }
+};
+
 exports.setDefaults = () => {};
 exports.fetchUserByNameAndUsersCompany = () => {};
