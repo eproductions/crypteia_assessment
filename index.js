@@ -6,23 +6,25 @@
 exports.example = () => 'hello world';
 
 exports.stripPrivateProperties = (propertiesToRemove, items) => {
-  let newList = [];
-  items.forEach((item) => {
-    let newItem = Object.keys(item).reduce((object, key) => {
+  return items.map((item) => {
+    return Object.keys(item).reduce((object, key) => {
       if ( !propertiesToRemove.includes(key) ) { object[key] = item[key]; }
       return object;
     }, {})
-    newList.push(newItem);
   })
-  return newList;
 };
 
 exports.excludeByProperty = (propertyToExclude, list) => {
-  let newList = list.filter(item => !item.hasOwnProperty(propertyToExclude));
-  return newList;
+  return list.filter(item => !item.hasOwnProperty(propertyToExclude));
 };
 
-exports.sumDeep = () => {};
+exports.sumDeep = (list) => {
+  return list.map(item => item.objects.reduce((acc, o) => {
+    acc['objects'] += o.val;
+    return acc;
+  }, { objects: 0 }));
+};
+
 exports.applyStatusColor = () => {};
 exports.createGreeting = () => {};
 exports.setDefaults = () => {};
