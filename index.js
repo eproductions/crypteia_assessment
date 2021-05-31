@@ -17,7 +17,11 @@ exports.stripPrivateProperties = (propertiesToRemove, items) => {
   return newList;
 };
 
-exports.excludeByProperty = () => {};
+exports.excludeByProperty = (propertyToExclude, list) => {
+  let newList = list.filter(item => !item.hasOwnProperty(propertyToExclude));
+  return newList;
+};
+
 exports.sumDeep = () => {};
 exports.applyStatusColor = () => {};
 exports.createGreeting = () => {};
