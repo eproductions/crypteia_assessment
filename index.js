@@ -45,4 +45,12 @@ exports.setDefaults = (defaultProps) => {
   }
 };
 
-exports.fetchUserByNameAndUsersCompany = () => {};
+exports.fetchUserByNameAndUsersCompany = async (name, services) => {
+  const [users, status] = await Promise.all([
+    await services.fetchUsers(),
+    await services.fetchStatus()
+  ])
+  const user = users.find((u) => u.name == name);
+  const company = await services.fetchCompanyById(user.companyId);
+  return {company, user, status};
+};
