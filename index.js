@@ -25,7 +25,16 @@ exports.sumDeep = (list) => {
   }, { objects: 0 }));
 };
 
-exports.applyStatusColor = () => {};
+exports.applyStatusColor = (colors, statuses) => {
+  return statuses.map(item => {
+    let color = Object.keys(colors).find(key => colors[key].includes(item.status));
+    if ( color ) {
+      item['color'] = color;
+      return item;
+    }
+  }).filter(item => item !== undefined);
+};
+
 exports.createGreeting = () => {};
 exports.setDefaults = () => {};
 exports.fetchUserByNameAndUsersCompany = () => {};
