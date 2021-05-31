@@ -5,7 +5,18 @@
  */
 exports.example = () => 'hello world';
 
-exports.stripPrivateProperties = () => {};
+exports.stripPrivateProperties = (propertiesToRemove, items) => {
+  let newList = [];
+  items.forEach((item) => {
+    let newItem = Object.keys(item).reduce((object, key) => {
+      if ( !propertiesToRemove.includes(key) ) { object[key] = item[key]; }
+      return object;
+    }, {})
+    newList.push(newItem);
+  })
+  return newList;
+};
+
 exports.excludeByProperty = () => {};
 exports.sumDeep = () => {};
 exports.applyStatusColor = () => {};
